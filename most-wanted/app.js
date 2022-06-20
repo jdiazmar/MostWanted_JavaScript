@@ -186,5 +186,9 @@ function chars(input) {
 // Any additional functions can be written below this line 👇. Happy Coding! 😁
 
 function findPersonInfo(person){
+    return person;
+}
+
+function restOfPersonInfo(){
     
 }
