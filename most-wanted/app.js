@@ -18,7 +18,6 @@
 function app(people) {
     // promptFor() is a custom function defined below that helps us prompt and validate input more easily
     // Note that we are chaining the .toLowerCase() immediately after the promptFor returns its value
-    findPersonFamily(people[0])
     let searchType = promptFor(
         "Do you know the name of the person you are looking for? Enter 'yes' or 'no'",
         yesNo
@@ -148,7 +147,7 @@ function displayPerson(person) {
     personInfo += `Eye Color: ${person.eyeColor}\n`;
     personInfo += `Occupation: ${person.occupation}\n`;
     //! TODO #1a: finish getting the rest of the information to display //////////////////////////////////////////
-    alert(personInfo);
+        return personInfo;
 }
 // End of displayPerson()
 
@@ -196,42 +195,3 @@ function findPersonInfo(person){
     return displayPerson(person);
 }
 
-function findPersonFamily(person){
-    
-}
-// console.log(person.currentSpouse)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// function searchByTrait(array){
-//     let userInput = prompt("Please Enter Trait: ");
-//     let userInputVal = prompt("Please Enter Value: ");
-//     let foundByTrait = array.filter(function(element){
-//         try {
-//             if (element[userInput].includes(userInputVal)){
-//                 return true;
-//             }
-//         } catch (error) {
-//             console.log(error);
-//         }
-//         finally{
-//             if(el[userInput]===parseInt(userInputVal)){
-//                 return true;
-//             }
-//         }
-//     });
-//     return foundByTrait
-// }
-// console.log(searchByTrait(array))
