@@ -195,6 +195,21 @@ function findPersonInfo(person){
     return displayPerson(person);
 }
 
+function personFamilyRelation(data, array = []){
+    let relationArray = data.parents;
+    array = [data];
+    if (relationArray.lenght === 0){
+        return array;
+    }
+    for  (let i = 0; i < relationArray.lenght; i++){
+        array = array.concat(
+            personFamilyRelation(relationArray[i])
+        );
+    }
+    return array;
+}
+
+
 function findPersonFamily(person, people) {
-    
+
 }
