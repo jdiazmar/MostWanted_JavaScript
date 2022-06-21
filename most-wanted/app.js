@@ -195,3 +195,6 @@ function findPersonInfo(person){
     return displayPerson(person);
 }
 
+function findPersonFamily(person, people) {
+    
+}
