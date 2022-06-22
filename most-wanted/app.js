@@ -209,7 +209,7 @@ function personFamilyRelation(data, array = []){
     return array;
 }
 
-
-function findPersonFamily(person, people) {
-
+function findPersonFamily(person){
+    return personFamilyRelation(person);
 }
+
