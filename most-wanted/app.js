@@ -210,6 +210,15 @@ function personFamilyRelation(data, array = []){
 }
 
 function findPersonFamily(person, people){
-    
+    let array = [];
+    let foundRelative = people.filter(function(parents) {
+        if(person.parents.includes(array)) {
+            return foundRelative;
+        }
+    });
+    // return array;
 }
+
+
+
 
