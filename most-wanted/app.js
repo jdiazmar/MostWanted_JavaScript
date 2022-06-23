@@ -195,28 +195,19 @@ function findPersonInfo(person){
     return displayPerson(person);
 }
 
-function personFamilyRelation(data, array = []){
-    let relationArray = data.parents;
-    array = [data];
+
+function findPersonFamily(person, people = []){
+    let relationArray = person.parents;
+    people = [relationArray];
     if (relationArray.lenght === 0){
         return array;
     }
     for  (let i = 0; i < relationArray.lenght; i++){
         array = array.concat(
-            personFamilyRelation(relationArray[i])
+            findPersonFamily(relationArray[i])
         );
     }
-    return array;
-}
-
-function findPersonFamily(person, people){
-    let array = [];
-    let foundRelative = people.filter(function(parents) {
-        if(person.parents.includes(array)) {
-            return foundRelative;
-        }
-    });
-    // return array;
+    return people;
 }
 
 
