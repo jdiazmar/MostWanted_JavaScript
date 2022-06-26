@@ -197,6 +197,12 @@ function findPersonInfo(person){
     return displayPerson(person);
 }
 
+function personRelationship(array, relationship){
+    array.forEach(person => {
+        person.relationship = relationship;        
+    });
+    return array;
+}
 
 function findPersonFamily(person, people){
     // Step 1: is to find if person has any parent(s)
