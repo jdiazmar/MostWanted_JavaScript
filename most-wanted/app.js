@@ -196,26 +196,37 @@ function findPersonInfo(person){
     return displayPerson(person);
 }
 
-function findPersonFamily(person, people){
-    let family = '';
-    const foundParents = people.filter(function(person){
-        for(let i = 0; i < person.parents.length; i++){
-            if(person.parents[i] === people.id){
-                return true;
-            }
-        }
-    })
-    if(foundParents.length === 0){
-        family += "This Person Has No Parents\n";
-    }
-    else{
-        for(let i = 0; i < foundParents.length; i++){
-            family += `Parents: ${foundParents[i].firstName} ${foundParents[i].lastName}\n`;
-        }
-    }
-    return family
-    
 
+function addingRelation(arr, relationship){
+    arr.forEach((person) =>{
+        person.relationship = relationship;
+    });
+    return arr;
+}
+
+
+function findPersonFamily(person, people){
+   let family = [];
+   let spouse = people.filter(function(element){
+    return element.id === person.currentSpouse;
+   });
+   spouse = addingRelation(spouse, 'Spouse');
+   
+   let parents = people.filter(function(element){
+    return element.parents.includes(person.id);
+   });
+   parents = addingRelation(parents, 'Parents');
+
+   let siblings = people.filter(function(element){
+    if(element != person){
+        return person.parents.includes(element.parents[0] || element.parents[1]);
+    }
+   });
+   siblings = addingRelation(siblings, 'Siblings');
+
+   family = [...spouse , ...parents, ...siblings];
+
+   displayPeople(family);
 }
 
 
@@ -224,3 +235,38 @@ function findPersonFamily(person, people){
 
 
 
+
+
+
+
+
+
+
+// let family = '';
+    // let foundParents = people.filter(function(person){
+    //     for(let i = 0; i < person.parents.length; i++){
+    //         if(person.parents[i] === people.id){
+    //             return true;
+    //         }
+    //     }
+    // })
+    //  if(foundParents.length === 0){
+    //     family += 'This Person Has No Parents';
+    // }
+    // else{
+    //     for(let i = 0; i < foundParents.length; i++){
+    //         family += `Parents: ${foundParents[i].firstName} ${foundParents[i].lastName}\n`;
+    //     }
+    // }
+    
+    // let foundSpouse = people.filter(function(person){
+    //     if(person.id === person.currentSpouse){
+    //         return true;
+    //     }
+    //     else{
+    //         return false;
+    //     }
+    // });
+    // return foundSpouse;
+    
+    // return family
