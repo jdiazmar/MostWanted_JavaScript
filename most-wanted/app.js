@@ -121,15 +121,14 @@ function searchByName(people) {
  */
 function displayPeople(people) {
     alert(
-        people
-            .map(function (person) {
-                return `${person.firstName} ${person.lastName}`;
-            })
-            .join("\n")
-    );
-
-
+            people
+                .map(function (person) {
+                    return `${person.firstName} ${person.lastName}`;
+                })
+                .join("\n")
+        );
 }
+    
 // End of displayPeople()
 
 /**
@@ -197,51 +196,25 @@ function findPersonInfo(person){
     return displayPerson(person);
 }
 
-function personRelationship(array, relationship){
-    array.forEach(person => {
-        person.relationship = relationship;        
-    });
-    return array;
-}
-
 function findPersonFamily(person, people){
-    // Step 1: is to find if person has any parent(s)
-    // Step 2: if person does happen to have parent, display parent's info (name, etc)
-    // Step 3: We have to search for each id in the persons parent array
-    // Step 4: Once we find parents, display parents
-    // FIND person's currentSpouse (id) in people array
-    let family = [];
-
-    const spouse = people.find(function (searchPerson){
-        return searchPerson.id === person.currentSpouse;
-    });
+    let family = '';
+    const foundParents = people.filter(function(person){
+        for(let i = 0; i < person.parents.length; i++){
+            if(person.parents[i] === people.id){
+                return true;
+            }
+        }
+    })
+    if(foundParents.length === 0){
+        family += "This Person Has No Parents\n";
+    }
+    else{
+        for(let i = 0; i < foundParents.length; i++){
+            family += `Parents: ${foundParents[i].firstName} ${foundParents[i].lastName}\n`;
+        }
+    }
+    return family
     
-
-    const parents = people.find(function (searchPerson){
-        return searchPerson.id === person.parents;
-    });
-   
-    
-    const siblings = people.filter(function (searchPerson){
-        return searchPerson.id === person.parents.includes(person.parents[0] || person.parents[1]);
-    });
-    
-
-    family = [spouse, parents, siblings];
-
-    displayPeople(family);
-
-    // let relationArray = person.parents;
-    // people = [relationArray];
-    // if (relationArray.lenght === 0){
-    //     return array;
-    // }
-    // for  (let i = 0; i < relationArray.lenght; i++){
-    //     array = array.concat(
-    //         findPersonFamily(relationArray[i])
-    //     );
-    // }
-    // return people;
 
 }
 
