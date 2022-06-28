@@ -190,7 +190,7 @@ function findPersonInfo(person){
 }
 
 
-function addingRelation(arr, relationship){
+function Relation(arr, relationship){
     arr.forEach((person) =>{
         person.relationship = relationship;
     });
@@ -203,19 +203,19 @@ function findPersonFamily(person, people){
    let spouse = people.filter(function(element){
     return element.id === person.currentSpouse;
    });
-   spouse = addingRelation(spouse, 'Spouse');
+   spouse = Relation(spouse, 'Spouse');
    
    let parents = people.filter(function(element){
     return element.parents.includes(person.id);
    });
-   parents = addingRelation(parents, 'Parents');
+   parents = Relation(parents, 'Parents');
 
    let siblings = people.filter(function(element){
     if(element != person){
         return person.parents.includes(element.parents[0] || element.parents[1]);
     }
    });
-   siblings = addingRelation(siblings, 'Siblings');
+   siblings = Relation(siblings, 'Siblings');
 
    family = [...spouse , ...parents, ...siblings];
 
