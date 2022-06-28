@@ -72,20 +72,15 @@ function mainMenu(person, people) {
             alert(personFamily);
             break;
         case "descendants":
-            //! TODO #3: Declare a findPersonDescendants function //////////////////////////////////////////
-            // HINT: Review recursion lecture + demo for bonus user story
             let personDescendants = findPersonDescendants(person[0], people);
             alert(personDescendants);
             break;
         case "restart":
-            // Restart app() from the very beginning
             app(people);
             break;
         case "quit":
-            // Stop application execution
             return;
         default:
-            // Prompt user again. Another instance of recursion
             return mainMenu(person, people);
     }
 }
@@ -235,9 +230,9 @@ function addDescendants(arr, relationship){
     return arr;
 }
 
-function findPersonDescendants(person, array = []){
+function findPersonDescendants(person, descendants = []){
     let getDescendants = person.parents;
-    let array = [];
+    descendants = [];
     if(getDescendants?.length || 0){
         return('This Person Has No Descendants');
     }
@@ -245,7 +240,7 @@ function findPersonDescendants(person, array = []){
         getDescendants = getDescendants.concat(
             findPersonDescendants(getDescendants[i])
         );
-        return array;
+        return descendants;
     };
     // familyDescendants = addDescendants(familyDescendants, 'Descendants');
    
@@ -253,7 +248,28 @@ function findPersonDescendants(person, array = []){
     
 }
 
-
+function searchByTraits(people){
+    let userInput = prompt(
+        "Please Select Trait You Would Like to Search By: height\nweight\neyeColor\noccupation\ngender\ndob?"
+    );
+    let userInputVal = prompt("Please Enter Value of the Selected Attribute: ");
+    let foundByTrait = people.filter(function(traits){
+        try{
+            if(traits[userInput].includes(userInputVal)){
+                return true;
+            }
+        }
+        catch(error){
+            console.log(error);
+        }
+        finally{
+            if(traits[userInput] === parseInt(userInputVal)){
+                return true;
+            }
+        }
+    });
+    return foundByTrait;
+}
 
 
 
