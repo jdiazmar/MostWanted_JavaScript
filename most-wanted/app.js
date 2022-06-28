@@ -68,8 +68,6 @@ function mainMenu(person, people) {
             alert(personInfo);
             break;
         case "family":
-            //! TODO #2: Declare a findPersonFamily function //////////////////////////////////////////
-            // HINT: Look for a people-collection stringifier utility function to help
             let personFamily = findPersonFamily(person[0], people);
             alert(personFamily);
             break;
@@ -230,43 +228,38 @@ function findPersonFamily(person, people){
 }
 
 
+function addDescendants(arr, relationship){
+    arr.forEach((person) =>{
+        person.relationship = relationship;
+    });
+    return arr;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-// let family = '';
-    // let foundParents = people.filter(function(person){
-    //     for(let i = 0; i < person.parents.length; i++){
-    //         if(person.parents[i] === people.id){
-    //             return true;
-    //         }
-    //     }
-    // })
-    //  if(foundParents.length === 0){
-    //     family += 'This Person Has No Parents';
-    // }
-    // else{
-    //     for(let i = 0; i < foundParents.length; i++){
-    //         family += `Parents: ${foundParents[i].firstName} ${foundParents[i].lastName}\n`;
-    //     }
-    // }
+function findPersonDescendants(person, array = []){
+    let getDescendants = person.parents;
+    let array = [];
+    if(getDescendants?.length || 0){
+        return('This Person Has No Descendants');
+    }
+    for(let i = 0; i < getDescendants.length; i++){
+        getDescendants = getDescendants.concat(
+            findPersonDescendants(getDescendants[i])
+        );
+        return array;
+    };
+    // familyDescendants = addDescendants(familyDescendants, 'Descendants');
+   
+    // displayPeople(familyDescendants);
     
-    // let foundSpouse = people.filter(function(person){
-    //     if(person.id === person.currentSpouse){
-    //         return true;
-    //     }
-    //     else{
-    //         return false;
-    //     }
-    // });
-    // return foundSpouse;
-    
-    // return family
+}
+
+
+
+
+
+
+
+
+
+
+
