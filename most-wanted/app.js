@@ -248,29 +248,75 @@ function findPersonDescendants(person, descendants = []){
     
 }
 
+// function searchByTraits(people){
+//     let userInput = prompt(
+//         "Please Select Trait You Would Like to Search By: height\nweight\neyeColor\noccupation\ngender\ndob?"
+//     );
+//     let userInputVal = prompt("Please Enter Value of the Selected Attribute: ");
+//     let foundByTrait = people.filter(function(traits){
+//         try{
+//             if(traits[userInput].includes(userInputVal)){
+//                 return true;
+//             }
+//         }
+//         catch(error){
+//             console.log(error);
+//         }
+//         finally{
+//             if(traits[userInput] === parseInt(userInputVal)){
+//                 return true;
+//             }
+//         }
+//     });
+//     return foundByTrait;
+// }
+
 function searchByTraits(people){
     let userInput = prompt(
-        "Please Select Trait You Would Like to Search By: height\nweight\neyeColor\noccupation\ngender\ndob?"
+        'Please Select The Trait You Would Like to Search By: height\nweight\neyeColor\noccupation\ngender\ndob?'
     );
-    let userInputVal = prompt("Please Enter Value of the Selected Attribute: ");
-    let foundByTrait = people.filter(function(traits){
-        try{
-            if(traits[userInput].includes(userInputVal)){
-                return true;
-            }
-        }
-        catch(error){
-            console.log(error);
-        }
-        finally{
-            if(traits[userInput] === parseInt(userInputVal)){
-                return true;
-            }
-        }
-    });
-    return foundByTrait;
+    switch(userInput) {
+        case 'height':
+            let personHeight = people.filter(function(element){
+                return element.id === people.height;
+            });
+            alert(personHeight);
+            break;
+        case 'weight':
+            let personWeight = people.find(function(element){
+                return element.id === people.weight;
+            });
+            alert(personWeight);
+            break;
+        case 'eyeColor':
+            let personEyeColor = people.find(function(element){
+                return element.id === people.eyeColor;
+            });
+            alert(personEyeColor);
+            break;
+        case 'occupation':
+            let personOccupation = people.find(function(element){
+                return element.id === people.occupation;
+            });
+            alert(personOccupation);
+            break;
+        case 'gender':
+            let personGender = people.find(function(element){
+                return element.id === people.gender;
+            });
+            alert(personGender);
+            break;
+        case '':
+            let personDob = people.find(function(element){
+                return element.id === people.dob;
+            });
+            alert(personDob);
+            break;
+        default:
+            return searchByTraits(people);
+        
+    }
 }
-
 
 
 
